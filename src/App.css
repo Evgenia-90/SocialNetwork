@@ -1,11 +1,6 @@
-.wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  width: 1200px;
-}
 .app-wrapper {
+  width: 1200px;
+  margin: 0 auto;
   display: grid;
   grid-template-areas:
     "h h"

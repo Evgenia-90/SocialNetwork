@@ -4,8 +4,8 @@ const ProfileInfo = function () {
   return (
     <div>
       <div>
-        <img
-          src="https://pohod-v-gory.com/uploads/image/attachment/91309/1200px-Matterhorn_from_air.jpg"
+        <img className={s.img}
+          src="https://i1.7fon.org/thumb/g667542.jpg"
           alt="image2"
         />
         <div className={s.descriptionBlock}>

@@ -48,7 +48,7 @@ let state: RootStateType = {
         { id: 2, message: "How is your It-kamasutra?" },
         { id: 3, message: "Yo" },
         { id: 4, message: "Yo" },
-        { id: 5, message: "Yo" },
+        { id: 5, message: "Hey" },
       ]
     },
   }

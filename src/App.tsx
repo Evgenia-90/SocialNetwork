@@ -33,7 +33,6 @@ const App = (props: PropsType) => {
 
   return (
     <BrowserRouter>
-      <div className="wrapper">
         <div className="app-wrapper">
           <Header />
           <Navbar />
@@ -42,7 +41,6 @@ const App = (props: PropsType) => {
             <Route path={"/profile"} render={() => <Profile state={profile} addPost={props.addPost} />} />
           </div>
         </div>
-      </div>
     </BrowserRouter>
   );
 };
