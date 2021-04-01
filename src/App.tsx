@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import { BrowserRouter, Route } from "react-router-dom";
-import state, { addPost } from "./redux/state"
+import state, { addPost, updateNewPostText } from "./redux/state"
 import {RootStateType} from './redux/state'
 
 export type PostType = {
@@ -25,9 +25,9 @@ export type MessageType = {
 export type PropsType = {
   state: RootStateType
   addPost: (postMessage: string) => void
+  updateNewPostText: (newText: string) => void
 }
-
-let profile = state.profilePage.posts
+ 
 
 const App = (props: PropsType) => {
 
@@ -38,7 +38,10 @@ const App = (props: PropsType) => {
           <Navbar />
           <div className="app-wrapper-content">
             <Route path={"/dialogs"} render={ () => <Dialogs state={props.state} /> } />
-            <Route path={"/profile"} render={() => <Profile state={profile} addPost={props.addPost} />} />
+            <Route path={"/profile"} render={() => <Profile posts={state.profilePage.posts} 
+            newText={state.profilePage.newPostText}
+            addPost={props.addPost}
+            updateNewPostText={props.updateNewPostText} />} />
           </div>
         </div>
     </BrowserRouter>
