@@ -4,23 +4,25 @@ import { PostType } from "../../App";
 import MyPosts from "./MyPosts/MyPosts";
 import s from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-type PropsType={
+import store, { ActionsTypes } from "./../../redux/state";
+
+type PropsType = {
   posts:Array<PostType>
   newText:string
-  addPost:(text:string)=>void
-  updateNewPostText:(text:string)=>void
+  // addPost:(text:string)=>void
+  // updateNewPostText:(text:string)=>void
+  dispatch: (action: ActionsTypes) => void
 }
 
 
-const Profile = function (props: PropsType) {
+const Profile = (props: PropsType) => {
 
   return (
     <div>
       <ProfileInfo />
       <MyPosts posts={props.posts}
       newPostText={props.newText}
-      addPost={props.addPost}
-      updateNewPostText={props.updateNewPostText} />
+      dispatch={props.dispatch.bind(store)} />
 
     </div>
   );
