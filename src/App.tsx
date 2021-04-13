@@ -23,11 +23,8 @@ export type MessageType = {
   message:string
 }
 
-export type PropsType = {
- // addPost: (postMessage: string) => void
-  //updateNewPostText: (newText: string) => void
+export type PropsType = { 
   store: StoreType
- // dispatch: (action: ActionsTypes) => void
 }
 
 
@@ -42,7 +39,7 @@ const state = props.store.getState();
             <Route path={"/dialogs"} render={ () => <Dialogs state={state} /> } />
             <Route path={"/profile"} render={() => <Profile posts={state.profilePage.posts} 
             newText={state.profilePage.newPostText}
-            dispatch={props.store.dispatch.bind(props.store)}
+            dispatch={store.dispatch.bind(store)}
              />} />
           </div>
         </div>

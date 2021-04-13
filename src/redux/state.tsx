@@ -1,3 +1,12 @@
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
+const SEND_MESSAGE = 'SEND-MESSAGE';
+
 export type StoreType = {
 _state: RootStateType
 _callSubscriber: (state: RootStateType) => void
@@ -6,19 +15,40 @@ subscribe: (observer: (state: RootStateType) => void) => void
 dispatch: (action: ActionsTypes ) => void
 }
 
-type AddPostActionType = {
-  type: 'ADD-POST'
-
+export type AddPostActionType = {
+  type: 'ADD-POST' 
 }
-type UpdateNewPostTextActionType = {
+ 
+export type UpdateNewPostTextActionType = {
   type: 'UPDATE-NEW-POST-TEXT'
   newText: string 
 }
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
+
+export type UpdateNewMessageBodyActionType = {
+  type: 'UPDATE-NEW-MESSAGE-BODY' 
+  body: string
+}
+ export type  SendMessageActionType = {
+  type: 'SEND-MESSAGE'
+}
+
+
+export const addPostActionCreator = (): AddPostActionType => ({type: ADD_POST})
+
+export const updateNewPostTextActionCreator = (text: string): UpdateNewPostTextActionType => 
+({type: UPDATE_NEW_POST_TEXT,newText: text})
+
+export const updateNewMessageBodyCreator = (body: string): UpdateNewMessageBodyActionType => 
+({type: UPDATE_NEW_MESSAGE_BODY,body: body})
+
+export const sendMessageCreator = (): SendMessageActionType => 
+({type: SEND_MESSAGE})
+
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | UpdateNewMessageBodyActionType | SendMessageActionType
 
 let store: StoreType = {
   _state: {
-    profilePage: {
+         profilePage: {
        posts: [
            { id: 1, message: "Hi,how are you?", likesCount: 12 },
            { id: 2, message: "It's my first post", likesCount: 11 },
@@ -42,8 +72,14 @@ let store: StoreType = {
        { id: 3, message: "Yo" },
        { id: 4, message: "Yo" },
        { id: 5, message: "Hey" },
-     ]
+     ],
+     newMessageBody: ""
    },
+         sidebar: {
+    data: [
+      {name: "Johnatan"},
+    ],
+   }
  },
  _callSubscriber(state: RootStateType) {
   console.log("State changed"); 
@@ -56,21 +92,13 @@ return this._state;
   this._callSubscriber = observer; //наблюдатель = observer , publisher-subscriber
 },
 
-dispatch(action) { // {type: 'ADD-POST'}
-if (action.type === 'ADD-POST') {
-  const newPost: PostType = {
-    id: new Date().getTime(),
-    message: this._state.profilePage.newPostText,
-    likesCount: 0
-  }
-  this._state.profilePage.posts.push(newPost);
-  this._state.profilePage.newPostText = '';
-  this._callSubscriber(this._state)
-} else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-  this._state.profilePage.newPostText = action.newText;
-  this._callSubscriber(this._state);
-}
-}
+// dispatch(action) {  
+//   this._state.profilePage = profileReducer(this._state.profilePage, action)
+//   this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+//   this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
+//   this._callSubscriber(this._state);
+// }
 }
 
 type MessageType = {
@@ -86,6 +114,9 @@ export type PostType = {
     message: string
     likesCount: number
 }
+type DataType = {
+  name: string
+}
 type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
@@ -93,10 +124,15 @@ type ProfilePageType = {
 type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newMessageBody: string
+}
+type SidebarType = {
+  data: Array<DataType>
 }
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
+    sidebar: SidebarType
 }
 
 export default store;

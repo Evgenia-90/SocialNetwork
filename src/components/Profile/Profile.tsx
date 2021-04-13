@@ -9,8 +9,6 @@ import store, { ActionsTypes } from "./../../redux/state";
 type PropsType = {
   posts:Array<PostType>
   newText:string
-  // addPost:(text:string)=>void
-  // updateNewPostText:(text:string)=>void
   dispatch: (action: ActionsTypes) => void
 }
 
@@ -21,8 +19,8 @@ const Profile = (props: PropsType) => {
     <div>
       <ProfileInfo />
       <MyPosts posts={props.posts}
-      newPostText={props.newText}
-      dispatch={props.dispatch.bind(store)} />
+               newPostText={props.newText}
+               dispatch={props.dispatch} />
 
     </div>
   );
