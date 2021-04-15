@@ -1,5 +1,12 @@
-import { ActionsTypes, RootStateType } from "./state";
-const sidebarReducer = (state: RootStateType, action: ActionsTypes) => {
+import { ActionsTypes, SidebarType } from "./store";
+
+let initialState = {
+  data: [
+      {name: "Johnatan"},
+  ],
+}
+
+const sidebarReducer = (state: SidebarType = initialState, action: ActionsTypes) => {
   return state;
 };
 

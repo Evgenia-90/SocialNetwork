@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-import Dialogs from "./components/Dialogs/Dialogs";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import { BrowserRouter, Route } from "react-router-dom";
-// import state, { addPost, updateNewPostText } from "./redux/state"
-import store, {ActionsTypes, RootStateType, StoreType} from './redux/state'
+import { Route } from "react-router-dom";
+import {StoreType} from "./redux/redux-store"
+import { ActionsTypes, RootStateType } from "./redux/store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 export type PostType = {
@@ -24,26 +24,28 @@ export type MessageType = {
 }
 
 export type PropsType = { 
+  state:  RootStateType
+  dispatch: (action: ActionsTypes) => void
   store: StoreType
 }
 
-
 const App: React.FC<PropsType> = (props) => {
-const state = props.store.getState();
   return (
-    <BrowserRouter>
         <div className="app-wrapper">
           <Header />
           <Navbar />
           <div className="app-wrapper-content">
-            <Route path={"/dialogs"} render={ () => <Dialogs state={state} /> } />
-            <Route path={"/profile"} render={() => <Profile posts={state.profilePage.posts} 
-            newText={state.profilePage.newPostText}
-            dispatch={store.dispatch.bind(store)}
-             />} />
+            <Route path={"/dialogs"} render={ () => <DialogsContainer state={props.state}
+                                                                      dispatch={props.dispatch}
+                                                                      store={props.store}
+                                                                       
+                                                                       />} /> 
+              <Route path={"/profile"} render={() => <Profile dispatch={props.dispatch}
+                                                              newText={props.state.profilePage.newPostText} 
+                                                              posts={props.state.profilePage.posts}
+                                                              />} /> 
           </div>
         </div>
-    </BrowserRouter>
   );
 };
 
