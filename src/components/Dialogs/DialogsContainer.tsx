@@ -1,8 +1,7 @@
 import { DialogType, MessageType } from "../../App"; 
 import  { sendMessageCreator, updateNewMessageBodyCreator} from '../../redux/dialogs-reducer'
 import { ActionsTypes } from "../../redux/store";
-import store from "../../redux/store";
-import { AppStateType, StoreType } from "../../redux/redux-store";
+import  {store, AppStateType, StoreType } from "../../redux/redux-store";
 import Dialogs from "./Dialogs";
 
 export type dialogsType = {
@@ -16,18 +15,19 @@ export type PropsType = {
   store: StoreType
 }
 const DialogsContainer = (props: PropsType) => {
-let state = store._state.dialogsPage
+let state = store.getState()
   
   let onSendMessageClick = () => {
-    props.dispatch(sendMessageCreator());
+  store.dispatch(sendMessageCreator());
   }
   let onNewMessageChange = (body: string) => {
-    props.dispatch(updateNewMessageBodyCreator(body));
+
+    store.dispatch(updateNewMessageBodyCreator(body));
   }
 
   return <Dialogs updateNewMessageBody={onNewMessageChange}
                   sendMessage={onSendMessageClick}
-                  dialogsPage={state}/>
+                  dialogsPage={state.dialogsPage} newMessageBody={state.dialogsPage.newMessageBody}/>
 };
 
 export default DialogsContainer;
