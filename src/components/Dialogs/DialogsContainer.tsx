@@ -1,7 +1,5 @@
-import { DialogType, MessageType } from "../../App"; 
-import  { sendMessageCreator, updateNewMessageBodyCreator} from '../../redux/dialogs-reducer'
-import { ActionsTypes } from "../../redux/store";
-import  {store, AppStateType, StoreType } from "../../redux/redux-store";
+import  { DialogType, MessageType, sendMessageCreator, updateNewMessageBodyCreator} from '../../redux/dialogs-reducer'
+import  { ActionsTypes, AppStateType, StoreType } from "../../redux/redux-store";
 import Dialogs  from "./Dialogs";
 import { connect } from "react-redux";
 

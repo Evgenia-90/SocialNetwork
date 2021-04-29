@@ -5,7 +5,7 @@ export type dialogItemType = {
   id: number;
   name: string;
 };
-const DialogItem = (props: dialogItemType) => {
+export const DialogItem = (props: dialogItemType) => {
   let path = "/dialogs/" + props.id;
   return (
     <div className={s.dialog + " " + s.active}>
@@ -14,5 +14,3 @@ const DialogItem = (props: dialogItemType) => {
   );
 };
 
-
-export default DialogItem;

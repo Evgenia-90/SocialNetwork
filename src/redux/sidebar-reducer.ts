@@ -1,4 +1,11 @@
-import { ActionsTypes, SidebarType } from "./store";
+import { ActionsTypes } from "./redux-store";
+
+export type SidebarType = {
+  data: Array<DataType>
+}
+export type DataType = {
+  name: string
+}
 
 let initialState = {
   data: [

@@ -1,7 +1,29 @@
-import { ActionsTypes, DialogPageType, SendMessageActionType, UpdateNewMessageBodyActionType } from "./store";
+import { ActionsTypes } from "./redux-store";
+
+export type UpdateNewMessageBodyActionType = {
+  type: 'UPDATE-NEW-MESSAGE-BODY'
+  body: string
+}
+export type  SendMessageActionType = {
+  type: 'SEND-MESSAGE'
+}
 
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 const SEND_MESSAGE = "SEND-MESSAGE";
+
+export type MessageType = {
+  id: number
+  message: string
+}
+export type DialogType = {
+  id: number
+  name: string
+}
+export type DialogPageType = {
+  dialogs: Array<DialogType>
+  messages: Array<MessageType>
+  newMessageBody: string
+}
 
 let initialState = {
   dialogs: [

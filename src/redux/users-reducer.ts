@@ -1,4 +1,4 @@
-import { ActionsTypes, AddPostActionType, FollowActionType, ProfilePageType, SetUsersActionType, UnfollowActionType, UpdateNewPostTextActionType } from "./store";
+import { ActionsTypes } from "./redux-store";
 
 export type UserType = {
   id: number,

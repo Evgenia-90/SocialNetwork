@@ -1,49 +1,16 @@
-import dialogsReducer from "./dialogs-reducer";
-import profileReducer from "./profile-reducer";
-import sidebarReducer from "./sidebar-reducer";
+import dialogsReducer, { DialogPageType } from "./dialogs-reducer";
+import profileReducer, { ProfilePageType } from "./profile-reducer";
+import { ActionsTypes } from "./redux-store";
+import sidebarReducer, { SidebarType } from "./sidebar-reducer";
 import { followAC, setUsersAC, unfollowAC } from "./users-reducer";
 
- 
-
-export type StoreType = {
+type StoreType = {
     _state: RootStateType
     _callSubscriber: (state: RootStateType) => void
     getState: () => RootStateType
     subscribe: (observer: (state: RootStateType) => void) => void
     dispatch: (action: ActionsTypes) => void
 }
-
-export type AddPostActionType = {
-    type: 'ADD-POST'
-}
-
-export type UpdateNewPostTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-
-export type UpdateNewMessageBodyActionType = {
-    type: 'UPDATE-NEW-MESSAGE-BODY'
-    body: string
-}
-export type  SendMessageActionType = {
-    type: 'SEND-MESSAGE'
-}
-
-export type FollowActionType = ReturnType<typeof followAC>
-export type UnfollowActionType = ReturnType<typeof unfollowAC>
-export type SetUsersActionType = ReturnType<typeof setUsersAC>
-
- 
-
-export type ActionsTypes =
-    AddPostActionType
-    | UpdateNewPostTextActionType
-    | UpdateNewMessageBodyActionType
-    | SendMessageActionType
-    | FollowActionType
-    | UnfollowActionType
-    | SetUsersActionType
 
 let store: StoreType = {
     _state: {
@@ -99,36 +66,7 @@ let store: StoreType = {
         this._callSubscriber(this._state);
     }
 };
-
-type MessageType = {
-    id: number
-    message: string
-}
-type DialogType = {
-    id: number
-    name: string
-}
-export type PostType = {
-    id: number
-    message: string
-    likesCount: number
-}
-type DataType = {
-    name: string
-}
-export type ProfilePageType = {
-    posts: Array<PostType>
-    newPostText: string
-}
-export type DialogPageType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
-    newMessageBody: string
-}
-export type SidebarType = {
-    data: Array<DataType>
-}
-export type RootStateType = {
+type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
     sidebar: SidebarType
