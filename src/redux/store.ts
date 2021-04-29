@@ -1,6 +1,7 @@
 import dialogsReducer from "./dialogs-reducer";
 import profileReducer from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
+import { followAC, setUsersAC, unfollowAC } from "./users-reducer";
 
  
 
@@ -29,11 +30,20 @@ export type  SendMessageActionType = {
     type: 'SEND-MESSAGE'
 }
 
+export type FollowActionType = ReturnType<typeof followAC>
+export type UnfollowActionType = ReturnType<typeof unfollowAC>
+export type SetUsersActionType = ReturnType<typeof setUsersAC>
+
+ 
+
 export type ActionsTypes =
     AddPostActionType
     | UpdateNewPostTextActionType
     | UpdateNewMessageBodyActionType
     | SendMessageActionType
+    | FollowActionType
+    | UnfollowActionType
+    | SetUsersActionType
 
 let store: StoreType = {
     _state: {

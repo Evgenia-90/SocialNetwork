@@ -4,9 +4,10 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import { Route } from "react-router-dom";
-import {AppStateType, StoreType} from "./redux/redux-store"
+import { AppStateType, StoreType } from "./redux/redux-store"
 import { ActionsTypes, RootStateType } from "./redux/store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 
 export type PostType = {
@@ -16,29 +17,30 @@ export type PostType = {
 }
 export type DialogType = {
   id: number
-  name:string
+  name: string
 }
 export type MessageType = {
   id: number
-  message:string
+  message: string
 }
 
-export type PropsType = { 
-  state:  AppStateType
+export type PropsType = {
+  state: AppStateType
   dispatch: (action: ActionsTypes) => void
   store: StoreType
 }
 
 const App: React.FC = (props) => {
   return (
-        <div className="app-wrapper">
-          <Header />
-          <Navbar />
-          <div className="app-wrapper-content">
-            <Route path={"/dialogs"} render={ () => <DialogsContainer />} /> 
-              <Route path={"/profile"} render={() => <Profile />} /> 
-          </div>
-        </div>
+    <div className="app-wrapper">
+      <Header />
+      <Navbar />
+      <div className="app-wrapper-content">
+        <Route path={"/dialogs"} render={() => <DialogsContainer />} />
+        <Route path={"/profile"} render={() => <Profile />} />
+        <Route path={"/users"} render={() => <UsersContainer />} />
+      </div>
+    </div>
   );
 };
 
