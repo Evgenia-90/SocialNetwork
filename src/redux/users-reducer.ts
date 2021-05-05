@@ -2,9 +2,12 @@ import { ActionsTypes } from "./redux-store";
 
 export type UserType = {
   id: number,
-  photoUrl: string
+  photos: {
+    small: string
+    large: string
+  }
   followed: boolean,
-  fullName: string,
+  name: string,
   status: string,
   location: UsersLocation
 }
@@ -24,24 +27,24 @@ export type InitialStateType = {
 
 let initialState: InitialStateType = {
   users: [
-    {id: 1, 
-     photoUrl: "https://pbs.twimg.com/profile_images/435523312404267008/OdfbG_oN_400x400.jpeg" ,
-     followed: false, 
-     fullName: "Dmitry", 
-     status: "I am a boss", 
-     location: {city: "Minsk", country: "Belarus"} },
-    {id: 2, 
-    photoUrl: "https://pbs.twimg.com/profile_images/435523312404267008/OdfbG_oN_400x400.jpeg" ,
-    followed: true,
-    fullName: "Sasha",
-    status: "I am a boss too", 
-    location: {city: "Moscow", country: "Russia"} },
-    {id: 3, 
-    photoUrl: "https://pbs.twimg.com/profile_images/435523312404267008/OdfbG_oN_400x400.jpeg" , 
-    followed: false, 
-    fullName: "Andrew", 
-    status: "I am a boss too", 
-    location: {city: "Kiev", country: "Ukraine"} }
+    // {id: 1, 
+    //  photos: "https://pbs.twimg.com/profile_images/435523312404267008/OdfbG_oN_400x400.jpeg" ,
+    //  followed: false, 
+    //  name: "Dmitry", 
+    //  status: "I am a boss", 
+    //  location: {city: "Minsk", country: "Belarus"} },
+    // {id: 2, 
+    // photos: "https://pbs.twimg.com/profile_images/435523312404267008/OdfbG_oN_400x400.jpeg" ,
+    // followed: true,
+    // name: "Sasha",
+    // status: "I am a boss too", 
+    // location: {city: "Moscow", country: "Russia"} },
+    // {id: 3, 
+    // photos: "https://pbs.twimg.com/profile_images/435523312404267008/OdfbG_oN_400x400.jpeg" , 
+    // followed: false, 
+    // name: "Andrew", 
+    // status: "I am a boss too", 
+    // location: {city: "Kiev", country: "Ukraine"} }
   ],
 };
 
