@@ -1,19 +1,25 @@
-import { UserType } from "../../redux/users-reducer"
+import { InitialStateType, UserType } from "../../redux/users-reducer"
 import s from "./users.module.css";
+import { UsersPropsType } from "./UsersContainer";
+
+
+type OnPageChangedType = {
+    onPageChanged: (pageNumber: number) => void
+}
 
 export let Users = (props: any) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize) 
 
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
+    let pages = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+    // for (let i = 1; i <= pagesCount; i++) {
+    //     pages.push(i);
+    // }
 
     return <div>
         <div>
             {pages.map(p => {
-                return <span className={props.currentPage === p ? s.selectedPage : ""}
+                return <span  className={props.currentPage === p ? s.selectedPage : s.Page}
                     onClick={(e) => { 
                         props.onPageChanged(p);
                      }}>{p}</span>
