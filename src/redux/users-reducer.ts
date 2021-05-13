@@ -19,33 +19,24 @@ export type UsersLocation = {
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
-const SET_USERS = "SET_USERS"
+const SET_USERS = "SET_USERS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
+const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
 
 export type InitialStateType = {
   users: Array<UserType>
+  pageSize: number
+  totalUsersCount: number
+  currentPage: number
+  setCurrentPage: number
 }
 
 let initialState: InitialStateType = {
-  users: [
-    // {id: 1, 
-    //  photos: "https://pbs.twimg.com/profile_images/435523312404267008/OdfbG_oN_400x400.jpeg" ,
-    //  followed: false, 
-    //  name: "Dmitry", 
-    //  status: "I am a boss", 
-    //  location: {city: "Minsk", country: "Belarus"} },
-    // {id: 2, 
-    // photos: "https://pbs.twimg.com/profile_images/435523312404267008/OdfbG_oN_400x400.jpeg" ,
-    // followed: true,
-    // name: "Sasha",
-    // status: "I am a boss too", 
-    // location: {city: "Moscow", country: "Russia"} },
-    // {id: 3, 
-    // photos: "https://pbs.twimg.com/profile_images/435523312404267008/OdfbG_oN_400x400.jpeg" , 
-    // followed: false, 
-    // name: "Andrew", 
-    // status: "I am a boss too", 
-    // location: {city: "Kiev", country: "Ukraine"} }
-  ],
+  users: [ ],
+  pageSize: 5,
+  totalUsersCount: 0,
+  currentPage: 1,
+  setCurrentPage: 0
 };
 
 const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
@@ -71,10 +62,11 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionsTyp
         })
       };
     case "SET_USERS":
-      return {
-        ...state,
-        users: [...state.users, ...action.users]
-      }
+      return { ...state, users: action.users}
+    case "SET_CURRENT_PAGE":
+      return { ...state, currentPage: action.currentPage}
+    case "SET_TOTAL_USERS_COUNT":
+      return { ...state, totalUsersCount: action.count}
     default:
       return state;
   }
@@ -83,5 +75,7 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionsTyp
 export const followAC = (userId: number) => ({ type: FOLLOW, userId }) as const
 export const unfollowAC = (userId: number) => ({ type: UNFOLLOW, userId }) as const
 export const setUsersAC = (users: Array<UserType>) => ({ type: SET_USERS, users }) as const
+export const setCurrentPageAC = (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage }) as const
+export const setTotalUsersCountAC = (totalUsersCount: number) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount }) as const
 
 export default usersReducer;
