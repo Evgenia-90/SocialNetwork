@@ -1,16 +1,16 @@
 import { combineReducers, createStore } from "redux";
 import dialogsReducer, { SendMessageActionType, UpdateNewMessageBodyActionType } from "./dialogs-reducer";
-import profileReducer, { AddPostActionType, UpdateNewPostTextActionType } from "./profile-reducer";
+import profileReducer, { AddPostActionType, setUserProfile, UpdateNewPostTextActionType } from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
-import usersReducer, { followAC,setCurrentPageAC, setTotalUsersCountAC, setUsersAC, toggleIsFetchingAC, unfollowAC } from "./users-reducer";
+import usersReducer, { follow,setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow } from "./users-reducer";
 
-export type FollowActionType = ReturnType<typeof followAC>
-export type UnfollowActionType = ReturnType<typeof unfollowAC>
-export type SetUsersActionType = ReturnType<typeof setUsersAC>
-export type setCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
-export type setTotalUsersCountActionType = ReturnType<typeof setTotalUsersCountAC>
-export type setIsFetchingActionType = ReturnType<typeof toggleIsFetchingAC>
-
+export type FollowActionType = ReturnType<typeof follow>
+export type UnfollowActionType = ReturnType<typeof unfollow>
+export type SetUsersActionType = ReturnType<typeof setUsers>
+export type setCurrentPageActionType = ReturnType<typeof setCurrentPage>
+export type setTotalUsersCountActionType = ReturnType<typeof setTotalUsersCount>
+export type setIsFetchingActionType = ReturnType<typeof toggleIsFetching>
+export type SetUserProfileActionType = ReturnType<typeof setUserProfile>
 
 export type ActionsTypes =
     AddPostActionType
@@ -23,6 +23,7 @@ export type ActionsTypes =
     | setCurrentPageActionType
     | setTotalUsersCountActionType
     | setIsFetchingActionType
+    | SetUserProfileActionType
     
 let rootReducer = combineReducers({
     profilePage: profileReducer,

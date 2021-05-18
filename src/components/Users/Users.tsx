@@ -1,17 +1,27 @@
-import { InitialStateType, UserType } from "../../redux/users-reducer"
+import { type } from "node:os";
+import { NavLink } from "react-router-dom";
+import { UserType } from "../../redux/users-reducer"
 import s from "./users.module.css";
-import { UsersPropsType } from "./UsersContainer";
 
 
-type OnPageChangedType = {
+
+
+type PropsTypeUsers = {
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
     onPageChanged: (pageNumber: number) => void
+    users: Array<UserType>
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
 }
 
-export let Users = (props: any) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize) 
+export let Users = (props: PropsTypeUsers) => {
 
-    let pages = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+
+    let pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
     // for (let i = 1; i <= pagesCount; i++) {
     //     pages.push(i);
     // }
@@ -19,17 +29,19 @@ export let Users = (props: any) => {
     return <div>
         <div>
             {pages.map(p => {
-                return <span  className={props.currentPage === p ? s.selectedPage : s.Page}
-                    onClick={(e) => { 
+                return <span className={props.currentPage === p ? s.selectedPage : s.Page}
+                    onClick={(e) => {
                         props.onPageChanged(p);
-                     }}>{p}</span>
+                    }}>{p}</span>
 
             })}
         </div>
         {props.users.map((u: UserType) => <div key={u.id}>
             <span>
                 <div>
-                    <img src={u.photos.small != null ? u.photos.small : "https://pbs.twimg.com/profile_images/435523312404267008/OdfbG_oN_400x400.jpeg"} className={s.userPhoto} />
+                    <NavLink to={'/profile' + u.id}>
+                        <img src={u.photos.small != null ? u.photos.small : "https://pbs.twimg.com/profile_images/435523312404267008/OdfbG_oN_400x400.jpeg"} className={s.userPhoto} />
+                    </NavLink>
                 </div>
                 <div>
                     {u.followed

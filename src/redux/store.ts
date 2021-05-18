@@ -66,7 +66,7 @@ let store: StoreType = {
     }
 };
 type RootStateType = {
-    profilePage: ProfilePageType
+    profilePage: any
     dialogsPage: DialogPageType
     sidebar: SidebarType
 }
