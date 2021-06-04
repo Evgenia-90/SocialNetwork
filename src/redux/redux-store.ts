@@ -1,4 +1,5 @@
 import { combineReducers, createStore } from "redux";
+import authReducer, { setAuthUserData } from "./auth-reducer";
 import dialogsReducer, { SendMessageActionType, UpdateNewMessageBodyActionType } from "./dialogs-reducer";
 import profileReducer, { AddPostActionType, setUserProfile, UpdateNewPostTextActionType } from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
@@ -11,6 +12,8 @@ export type setCurrentPageActionType = ReturnType<typeof setCurrentPage>
 export type setTotalUsersCountActionType = ReturnType<typeof setTotalUsersCount>
 export type setIsFetchingActionType = ReturnType<typeof toggleIsFetching>
 export type SetUserProfileActionType = ReturnType<typeof setUserProfile>
+export type setUserDataActionType = ReturnType<typeof setAuthUserData>
+
 
 export type ActionsTypes =
     AddPostActionType
@@ -24,12 +27,14 @@ export type ActionsTypes =
     | setTotalUsersCountActionType
     | setIsFetchingActionType
     | SetUserProfileActionType
+    | setUserDataActionType
     
 let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 });
 
 

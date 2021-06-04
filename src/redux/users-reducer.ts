@@ -1,4 +1,4 @@
-import { ActionsTypes } from "./redux-store";
+import { FollowActionType, setCurrentPageActionType, setIsFetchingActionType, setTotalUsersCountActionType, SetUsersActionType, UnfollowActionType } from "./redux-store";
 
 export type UserType = {
   id: number,
@@ -34,7 +34,7 @@ export type InitialStateType = {
 }
 
 let initialState: InitialStateType = {
-  users: [ ],
+  users: [],
   pageSize: 5,
   totalUsersCount: 0,
   currentPage: 1,
@@ -42,7 +42,14 @@ let initialState: InitialStateType = {
   isFetching: true
 };
 
-const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
+type UserReducerActionsType = | FollowActionType
+  | UnfollowActionType
+  | SetUsersActionType
+  | setCurrentPageActionType
+  | setTotalUsersCountActionType
+  | setIsFetchingActionType
+
+const usersReducer = (state: InitialStateType = initialState, action: UserReducerActionsType): InitialStateType => {
   switch (action.type) {
     case "FOLLOW":
       return {
@@ -65,13 +72,13 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionsTyp
         })
       };
     case "SET_USERS":
-      return { ...state, users: action.users}
+      return { ...state, users: action.users }
     case "SET_CURRENT_PAGE":
-      return { ...state, currentPage: action.currentPage}
+      return { ...state, currentPage: action.currentPage }
     case "SET_TOTAL_USERS_COUNT":
-      return { ...state, totalUsersCount: action.count}
+      return { ...state, totalUsersCount: action.count }
     case "TOGGLE_IS_FETCHING":
-      return { ...state, isFetching: action.isFetching}  
+      return { ...state, isFetching: action.isFetching }
     default:
       return state;
   }
@@ -82,6 +89,6 @@ export const unfollow = (userId: number) => ({ type: UNFOLLOW, userId }) as cons
 export const setUsers = (users: Array<UserType>) => ({ type: SET_USERS, users }) as const
 export const setCurrentPage = (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage }) as const
 export const setTotalUsersCount = (totalUsersCount: number) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount }) as const
-export const toggleIsFetching = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching}) as const
+export const toggleIsFetching = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching }) as const
 
 export default usersReducer;

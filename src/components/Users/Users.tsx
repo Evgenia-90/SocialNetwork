@@ -1,4 +1,3 @@
-import { type } from "node:os";
 import { NavLink } from "react-router-dom";
 import { UserType } from "../../redux/users-reducer"
 import s from "./users.module.css";
@@ -39,7 +38,7 @@ export let Users = (props: PropsTypeUsers) => {
         {props.users.map((u: UserType) => <div key={u.id}>
             <span>
                 <div>
-                    <NavLink to={'/profile' + u.id}>
+                    <NavLink to={'/profile/' + u.id}>
                         <img src={u.photos.small != null ? u.photos.small : "https://pbs.twimg.com/profile_images/435523312404267008/OdfbG_oN_400x400.jpeg"} className={s.userPhoto} />
                     </NavLink>
                 </div>

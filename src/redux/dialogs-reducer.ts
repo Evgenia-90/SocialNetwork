@@ -1,5 +1,3 @@
-import { ActionsTypes } from "./redux-store";
-
 export type UpdateNewMessageBodyActionType = {
   type: 'UPDATE-NEW-MESSAGE-BODY'
   body: string
@@ -46,7 +44,9 @@ let initialState = {
 
 export type InitialStateType = typeof initialState
 
-const dialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes) => {
+type DialogsReducerActionsType = UpdateNewMessageBodyActionType | SendMessageActionType
+
+const dialogsReducer = (state: InitialStateType = initialState, action: DialogsReducerActionsType) => {
   switch (action.type) {
     case UPDATE_NEW_MESSAGE_BODY:
       return {
@@ -69,7 +69,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: ActionsT
 };
 
 export const updateNewMessageBodyCreator = (body: string): UpdateNewMessageBodyActionType =>
-  ({ type: UPDATE_NEW_MESSAGE_BODY, body })
+  ({ body, type: UPDATE_NEW_MESSAGE_BODY })
 
 export const sendMessageCreator = (): SendMessageActionType =>
   ({ type: SEND_MESSAGE })
