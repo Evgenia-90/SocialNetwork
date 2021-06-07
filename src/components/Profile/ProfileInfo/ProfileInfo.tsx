@@ -16,7 +16,7 @@ const ProfileInfo = function (props: PropsTypeProfileInfo) {
     <div>
       <div>
         <img className={s.img}
-          src="https://i1.7fon.org/thumb/g667542.jpg"
+          src="https://i.natgeofe.com/n/f27ebe1a-7265-4e18-8c82-b6f93c7da44e/sunrise-moraine-lake-canada.jpg?w=636&h=425"
           alt="image2"
         />
         <div className={s.descriptionBlock}>

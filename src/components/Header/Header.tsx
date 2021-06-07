@@ -1,17 +1,5 @@
 import { NavLink } from "react-router-dom";
 import s from "./Header.module.css";
-// import { HeaderPropsType } from "./HeaderContainer";
-
-
-// export type HeaderType = {
-//   data: {
-//     id: number
-//     email: string
-//     login: string
-//   }
-//   resultCode: number
-//   messages: Array<string>
-// }
 
 export type LoginType = {
   data: {
@@ -22,14 +10,13 @@ export type LoginType = {
   resultCode: number
   messages: Array<string>
   isAuth: boolean
-
 }
 
 export type HeaderPropsType = {
   isAuth: boolean
   login: LoginType
-
 }
+
 const Header = (props: HeaderPropsType) => {
   debugger
   return (

@@ -9,7 +9,7 @@ export type DataType = {
 
 let initialState = {
   data: [
-      {name: "Johnatan"},
+    { name: "Johnatan" },
   ],
 }
 
