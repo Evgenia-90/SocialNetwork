@@ -3,8 +3,6 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import { ProfilePropsType } from "./ProfileContainer";
 
 
-
-
 const Profile = (props: ProfilePropsType) => {
 
   return (

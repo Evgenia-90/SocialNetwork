@@ -1,11 +1,11 @@
-export type AddPostActionType = {
+type AddPostActionType = {
   type: 'ADD-POST'
 }
-export type SetUserProfileActionType = {
+type SetUserProfileActionType = {
   type: 'SET-USER-PROFILE'
   profile: null | ProfileType
 }
-export type UpdateNewPostTextActionType = {
+type UpdateNewPostTextActionType = {
   type: 'UPDATE-NEW-POST-TEXT'
   newText: string
 }
@@ -41,9 +41,6 @@ export type ProfileType = {
   }
 }
 
-
-
-
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
@@ -59,9 +56,10 @@ let initialState = {
   profile: null
 };
 
-type ProfileReducerActionsType = AddPostActionType |
-  SetUserProfileActionType |
-  UpdateNewPostTextActionType
+export type ProfileReducerActionsType =
+  | AddPostActionType
+  | SetUserProfileActionType
+  | UpdateNewPostTextActionType
 
 const profileReducer = (state: ProfilePageType = initialState, action: ProfileReducerActionsType): ProfilePageType => {
   switch (action.type) {

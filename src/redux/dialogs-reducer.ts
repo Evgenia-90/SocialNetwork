@@ -1,8 +1,8 @@
-export type UpdateNewMessageBodyActionType = {
+type UpdateNewMessageBodyActionType = {
   type: 'UPDATE-NEW-MESSAGE-BODY'
   body: string
 }
-export type SendMessageActionType = {
+type SendMessageActionType = {
   type: 'SEND-MESSAGE'
 }
 
@@ -44,7 +44,7 @@ let initialState = {
 
 export type InitialStateType = typeof initialState
 
-type DialogsReducerActionsType = UpdateNewMessageBodyActionType | SendMessageActionType
+export type DialogsReducerActionsType = UpdateNewMessageBodyActionType | SendMessageActionType
 
 const dialogsReducer = (state: InitialStateType = initialState, action: DialogsReducerActionsType) => {
   switch (action.type) {

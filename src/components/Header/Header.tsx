@@ -18,7 +18,7 @@ export type HeaderPropsType = {
 }
 
 const Header = (props: HeaderPropsType) => {
-  debugger
+ // debugger
   return (
     <header className={s.header}>
       <img
