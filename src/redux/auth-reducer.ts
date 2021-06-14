@@ -1,4 +1,7 @@
+import { Dispatch } from "react";
+import { authAPI } from "../api/api";
 import { LoginType } from "../components/Header/Header";
+import { ActionsTypes } from "./redux-store";
 
 const SET_USER_DATA = "SET_USER_DATA";
 
@@ -41,6 +44,14 @@ export const setAuthUserData = (data: dataType) => {
     type: SET_USER_DATA,
     data
   } as const
+}
+export const getAuthUserData = () => (dispatch: Dispatch<ActionsTypes>) => {
+  authAPI.me()
+  .then(response => {
+    if (response.data.resultCode === 0) {
+      dispatch(setAuthUserData(response.data.data))
+    }
+  });
 }
 
 type exampleAT = ReturnType<typeof exampleAction>
