@@ -15,7 +15,7 @@ type MapDispatchPropsType = {
 
 class HeaderContainer extends React.Component<any> {
   componentDidMount() {
-     this.props.getAuthUserData();
+    this.props.getAuthUserData();
   }
   render() {
     return (

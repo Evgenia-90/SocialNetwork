@@ -47,11 +47,11 @@ export const setAuthUserData = (data: dataType) => {
 }
 export const getAuthUserData = () => (dispatch: Dispatch<ActionsTypes>) => {
   authAPI.me()
-  .then(response => {
-    if (response.data.resultCode === 0) {
-      dispatch(setAuthUserData(response.data.data))
-    }
-  });
+    .then(response => {
+      if (response.data.resultCode === 0) {
+        dispatch(setAuthUserData(response.data.data))
+      }
+    });
 }
 
 type exampleAT = ReturnType<typeof exampleAction>
